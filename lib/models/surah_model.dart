@@ -1,4 +1,4 @@
-class QuranModel {
+class SurahModel {
   int? nomor;
   String? nama;
   String? namaLatin;
@@ -8,7 +8,7 @@ class QuranModel {
   String? deskripsi;
   String? audio;
 
-  QuranModel({
+  SurahModel({
     this.nomor,
     this.nama,
     this.namaLatin,
@@ -19,7 +19,7 @@ class QuranModel {
     this.audio,
   });
 
-  QuranModel.fromJson(Map<String, dynamic> json) {
+  SurahModel.fromJson(Map<String, dynamic> json) {
     nomor = json['nomor'];
     nama = json['nama'];
     namaLatin = json['nama_latin'];
