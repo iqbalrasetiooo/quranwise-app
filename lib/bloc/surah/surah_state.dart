@@ -13,7 +13,6 @@ class SurahLoading extends SurahState {}
 
 class SurahSuccess extends SurahState {
   final List<SurahModel> data;
-
   const SurahSuccess({required this.data});
 }
 

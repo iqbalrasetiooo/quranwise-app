@@ -6,3 +6,8 @@ abstract class DetailSurahEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetDetailSurahEvent extends DetailSurahEvent {
+  final String id;
+  const GetDetailSurahEvent({required this.id});
+}

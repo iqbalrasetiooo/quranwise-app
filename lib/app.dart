@@ -6,7 +6,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [],
+      providers: [
+        BlocProvider(
+          create: (context) => SurahBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DetailSurahBloc(),
+        ),
+      ],
       child: const App(),
     );
   }
@@ -17,8 +24,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Home(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/detail': (context) => const DetailScreen(),
+      },
     );
   }
 }

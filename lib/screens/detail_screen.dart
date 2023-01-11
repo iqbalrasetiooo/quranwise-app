@@ -8,9 +8,10 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DetailSurahBloc dSurah = context.read<DetailSurahBloc>();
-    var data = ModalRoute.of(context)?.settings.arguments;
+    var data = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
-      body: BlocBuilder<DetailSurahBloc, DetailSurahState>(
+      body: BlocConsumer<DetailSurahBloc, DetailSurahState>(
+        listener: (context, state) {},
         bloc: dSurah..add(GetDetailSurahEvent(id: data.toString())),
         buildWhen: (previous, current) {
           if (current is DetailSurahSuccess) {
