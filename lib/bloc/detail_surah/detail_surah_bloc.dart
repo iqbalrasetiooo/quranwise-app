@@ -10,15 +10,12 @@ part 'detail_surah_state.dart';
 class DetailSurahBloc extends Bloc<DetailSurahEvent, DetailSurahState> {
   DetailSurahBloc() : super(DetailSurahInitial()) {
     on<GetDetailSurahEvent>((event, emit) async {
+      String e = '';
       // TODO: implement event handler
-      try {
-        emit(DetailSurahLoading());
-        var json = await ApiService().getDetailSurah(id: event.id);
-        var data = DetailSurahModel.fromJson(json);
-        emit(DetailSurahSuccess(data: data));
-      } catch (e) {
-        emit(DetailSurahError(e.toString()));
-      }
+      var json = await ApiService().getDetailSurah(id: event.id);
+      var data = DetailSurahModel.fromJson(json);
+      emit(DetailSurahSuccess(data: data));
+      emit(DetailSurahError(e));
     });
   }
 }
