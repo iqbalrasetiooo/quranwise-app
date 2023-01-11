@@ -18,13 +18,11 @@ class ApiService {
     }
   }
 
-  Future<List<DetailSurahModel>> getDetailSurah(String id) async {
+  Future getDetailSurah({required String id}) async {
     var url = Uri.parse('$baseUrl/surat/{$id}');
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      var json = jsonDecode(response.body) as List;
-      final data = json.map((e) => DetailSurahModel.fromJson(e)).toList();
-      return data;
+      return response.body;
     } else {
       throw Exception();
     }

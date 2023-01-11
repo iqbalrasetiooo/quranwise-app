@@ -8,7 +8,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DetailSurahBloc dSurah = context.read<DetailSurahBloc>();
-    var data = ModalRoute.of(context)!.settings.arguments;
+    var data = ModalRoute.of(context)?.settings.arguments;
     return Scaffold(
       body: BlocConsumer<DetailSurahBloc, DetailSurahState>(
         listener: (context, state) {},
@@ -25,9 +25,8 @@ class DetailScreen extends StatelessWidget {
             return ListView.builder(
               padding: const EdgeInsets.all(20),
               shrinkWrap: true,
-              itemCount: state.data.length,
               itemBuilder: (context, index) {
-                var item = state.data[index];
+                var item = state.data;
                 return Text(item.arti.toString());
               },
             );

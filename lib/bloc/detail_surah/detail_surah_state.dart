@@ -12,7 +12,7 @@ class DetailSurahInitial extends DetailSurahState {}
 class DetailSurahLoading extends DetailSurahState {}
 
 class DetailSurahSuccess extends DetailSurahState {
-  final List<DetailSurahModel> data;
+  final DetailSurahModel data;
   const DetailSurahSuccess({required this.data});
 }
 
