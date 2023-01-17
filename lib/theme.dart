@@ -4,7 +4,7 @@ const Color primaryColor = Color(0xff6FC6AA);
 const Color whiteColor = Color(0xffFFFFFF);
 const Color blackColor = Color(0xff1F2127);
 const Color backgroundColor = Color(0xffF9F9F9);
-const Color greyColor = Color(0xffD6D6D6);
+const Color greyColor = Color(0xffC7C9D9);
 
 TextStyle blackTextStyle = GoogleFonts.reemKufi(
   color: blackColor,
@@ -17,6 +17,10 @@ TextStyle whiteTextStyle = GoogleFonts.reemKufi(
 );
 TextStyle primaryTextStyle = GoogleFonts.reemKufi(
   color: primaryColor,
+);
+
+TextStyle arabTextStyle = GoogleFonts.notoSansArabic(
+  color: blackColor,
 );
 
 FontWeight light = FontWeight.w300;

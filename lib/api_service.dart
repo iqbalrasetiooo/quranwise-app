@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:quranwise/models/detail_surah_model.dart';
-import 'package:quranwise/models/surah_model.dart';
+import 'package:quranwise/export.dart';
 
 class ApiService {
   String baseUrl = "https://equran.id/api";
 
-  Future<List<SurahModel>> getSurah() async {
+  Future getSurah() async {
     var url = Uri.parse('$baseUrl/surat');
     var response = await http.get(url);
     if (response.statusCode == 200) {
@@ -19,11 +18,14 @@ class ApiService {
   }
 
   Future getDetailSurah({required String id}) async {
-    var url = Uri.parse('$baseUrl/surat/{$id}');
+    var url = Uri.parse('$baseUrl/surat/$id');
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      return response.body;
+      var data = json.decode(response.body);
+      print(data);
+      return data;
     } else {
+      print(response.body);
       throw Exception();
     }
   }

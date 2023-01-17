@@ -14,88 +14,84 @@ class HomeScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    topBar(),
-                    info(),
-                    textSurah(),
-                    //Get All Surah
-                    BlocBuilder<SurahBloc, SurahState>(
-                      bloc: surahBloc..add(GetAllSurahEvent()),
-                      buildWhen: (previous, current) {
-                        if (current is SurahSuccess) {
-                          return true;
-                        } else {
-                          return false;
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is SurahSuccess) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.data.length,
-                            itemBuilder: (context, index) {
-                              var item = state.data[index];
-                              return GestureDetector(
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  '/detail',
-                                  arguments: item.nomor,
+                topBar(),
+                info(),
+                textSurah(),
+                //Get All Surah
+                BlocBuilder<SurahBloc, SurahState>(
+                  bloc: surahBloc..add(GetAllSurahEvent()),
+                  buildWhen: (previous, current) {
+                    if (current is SurahSuccess) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is SurahSuccess) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.data.length,
+                        itemBuilder: (context, index) {
+                          var item = state.data[index];
+                          return GestureDetector(
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              '/detail',
+                              arguments: item.nomor,
+                            ),
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 16),
+                              child: ListTile(
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                    color: primaryColor,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24),
                                 ),
-                                child: Container(
-                                  margin: const EdgeInsets.only(bottom: 16),
-                                  child: ListTile(
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        color: primaryColor,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 18,
-                                      vertical: 8,
-                                    ),
-                                    leading: CircleAvatar(
-                                      foregroundColor: whiteColor,
-                                      backgroundColor: primaryColor,
-                                      child: Text(
-                                        '${index + 1}',
-                                        style: whiteTextStyle.copyWith(
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                    title: Text(
-                                      item.namaLatin.toString(),
-                                      style: primaryTextStyle.copyWith(
-                                        fontSize: 18,
-                                        fontWeight: semibold,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      item.nama.toString(),
-                                    ),
-                                    trailing: Text(
-                                      '${item.jumlahAyat} Ayat',
-                                      style: blackTextStyle.copyWith(
-                                          fontSize: 14, fontWeight: regular),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 18,
+                                  vertical: 8,
+                                ),
+                                leading: CircleAvatar(
+                                  foregroundColor: whiteColor,
+                                  backgroundColor: primaryColor,
+                                  child: Text(
+                                    '${index + 1}',
+                                    style: whiteTextStyle.copyWith(
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
-                              );
-                            },
+                                title: Text(
+                                  item.namaLatin.toString(),
+                                  style: primaryTextStyle.copyWith(
+                                    fontSize: 18,
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  item.nama.toString(),
+                                ),
+                                trailing: Text(
+                                  '${item.jumlahAyat} Ayat',
+                                  style: blackTextStyle.copyWith(
+                                      fontSize: 14, fontWeight: regular),
+                                ),
+                              ),
+                            ),
                           );
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

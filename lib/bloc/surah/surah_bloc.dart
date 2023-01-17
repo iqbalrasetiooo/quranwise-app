@@ -9,17 +9,15 @@ part 'surah_state.dart';
 
 class SurahBloc extends Bloc<SurahEvent, SurahState> {
   SurahBloc() : super(SurahInitial()) {
-    on<SurahEvent>((event, emit) {
-      on<GetAllSurahEvent>((event, emit) async {
-        // TODO: implement event handler
-        try {
-          emit(SurahLoading());
-          var data = await ApiService().getSurah();
-          emit(SurahSuccess(data: data));
-        } catch (e) {
-          emit(SurahError(e.toString()));
-        }
-      });
+    on<GetAllSurahEvent>((event, emit) async {
+      // TODO: implement event handler
+      try {
+        emit(SurahLoading());
+        var data = await ApiService().getSurah();
+        emit(SurahSuccess(data: data));
+      } catch (e) {
+        emit(SurahError(e.toString()));
+      }
     });
   }
 }
